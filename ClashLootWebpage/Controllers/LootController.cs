@@ -9,12 +9,15 @@ namespace ClashLootWebpage.Controllers
 {
     public class LootController : Controller
     {
+        // *****************Retrieve all loot records*****************
         // GET: Loot
         public ActionResult Index()
         {
             LootDBHandle dbhandle = new LootDBHandle();
+            ModelState.Clear();
             return View();
         }
+
 
         // GET: Loot/Details/5
         public ActionResult Details(int id)
@@ -22,6 +25,7 @@ namespace ClashLootWebpage.Controllers
             return View();
         }
 
+        // *****************Add a new loot record manually*****************
         // GET: Loot/Create
         public ActionResult Create()
         {
@@ -30,13 +34,21 @@ namespace ClashLootWebpage.Controllers
 
         // POST: Loot/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(LootModel smodel)
         {
             try
             {
-                // TODO: Add insert logic here
+                if (ModelState.IsValid)
+                {
+                    LootDBHandle ldb = new LootDBHandle();
+                    if (ldb.AddRecord(smodel))
+                    {
+                        ViewBag.Message = "Loot Record Added Successfully";
+                        ModelState.Clear();
+                    }
+                }
 
-                return RedirectToAction("Index");
+                return View();
             }
             catch
             {
@@ -44,20 +56,22 @@ namespace ClashLootWebpage.Controllers
             }
         }
 
+        // *****************Edit loot record details manually*****************
         // GET: Loot/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            LootDBHandle ldb = new LootDBHandle();
+            return View(ldb.GetRecords().Find(smodel => smodel.Id == id));
         }
 
         // POST: Loot/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, LootModel smodel)
         {
             try
             {
-                // TODO: Add update logic here
-
+                LootDBHandle ldb = new LootDBHandle();
+                ldb.UpdateRecord(smodel);
                 return RedirectToAction("Index");
             }
             catch
@@ -66,12 +80,27 @@ namespace ClashLootWebpage.Controllers
             }
         }
 
+        //*****************Delete loot record manually*****************
         // GET: Loot/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            try
+            {
+                LootDBHandle ldb = new LootDBHandle();
+                if (ldb.DeleteRecord(id))
+                {
+                    ViewBag.AlertMsg = "Loot Record Deleted Successfully";
+                }
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+            
         }
 
+        /*
         // POST: Loot/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
@@ -87,5 +116,6 @@ namespace ClashLootWebpage.Controllers
                 return View();
             }
         }
+        */
     }
 }
