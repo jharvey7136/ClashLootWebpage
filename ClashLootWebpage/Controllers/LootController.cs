@@ -15,7 +15,7 @@ namespace ClashLootWebpage.Controllers
         {
             LootDBHandle dbhandle = new LootDBHandle();
             ModelState.Clear();
-            return View();
+            return View(dbhandle.GetRecords());
         }
 
 

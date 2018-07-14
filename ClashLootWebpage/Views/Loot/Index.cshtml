@@ -1,0 +1,50 @@
+﻿@model IEnumerable<ClashLootWebpage.Models.LootModel>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.dateNow)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Gold)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Elixer)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Dark)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Trophies)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.dateNow)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Gold)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Elixer)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Dark)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Trophies)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { onclick = "return confirm('Are sure wants to delete?');" })
+        </td>
+    </tr>
+}
+
+</table>

@@ -60,12 +60,12 @@ namespace ClashLootWebpage.Models
                 recordlist.Add(
                     new LootModel
                     {
-                        Id = Convert.ToInt32(dr["Id"]),
+                        Id = (int)(dr["Id"]),
                         dateNow = (DateTime)dr["dateNow"],
                         Gold = (int)dr["gold"],
                         Elixer = (int)dr["elixer"],
-                        Dark = (int)dr["elixer"],
-                        Trophies = (int)dr["elixer"]
+                        Dark = (int)dr["dark"],
+                        Trophies = (int)dr["trophies"]
                     });
             }
             return recordlist;
