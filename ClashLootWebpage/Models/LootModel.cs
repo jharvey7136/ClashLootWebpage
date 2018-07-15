@@ -25,8 +25,5 @@ namespace ClashLootWebpage.Models
 
         [Required(ErrorMessage = "Trophies are required.")]
         public int Trophies { get; set; }
-
-
-
     }
 }

@@ -1,50 +1,27 @@
 ﻿@model IEnumerable<ClashLootWebpage.Models.LootModel>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
+<table data-toggle="table">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.dateNow)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Gold)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Elixer)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Dark)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Trophies)
-        </th>
-        <th></th>
+        <th>Date</th>
+        <th>Gold</th>
+        <th>Elixer</th>
+        <th>Dark</th>
+        <th>Trophies</th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.dateNow)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Gold)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Elixer)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Dark)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Trophies)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { onclick = "return confirm('Are sure wants to delete?');" })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.dateNow.Date)</td>
+            <td>@Html.DisplayFor(modelItem => item.Gold)</td>
+            <td>@Html.DisplayFor(modelItem => item.Elixer)</td>
+            <td>@Html.DisplayFor(modelItem => item.Dark)</td>
+            <td>@Html.DisplayFor(modelItem => item.Trophies)</td>
+        </tr>
+    }
 
 </table>
+
+
+
+
